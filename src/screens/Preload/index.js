@@ -11,6 +11,7 @@ export default () => {
     const checkToken = async () => {
       const token = await AsyncStorage.getItem('token');
       if (token) {
+        console.log('access garanted!');
         //navigation.navigate('SighUp');
       } else {
         navigation.navigate('SignIn');

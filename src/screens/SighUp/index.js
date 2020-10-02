@@ -8,6 +8,7 @@ import {
   SighMessageButtonText,
   SighMessageButtonTextBold,
 } from './styles';
+import Api from '../../Api';
 import {useNavigation} from '@react-navigation/native';
 import BarberLogo from '../../assets/barber.svg';
 import SighInput from '../../components/SighInput';
@@ -22,7 +23,17 @@ export default () => {
 
   const navigation = useNavigation();
 
-  const handleCadastar = () => {};
+  const handleCadastar = async () => {
+    let res = await Api.sighUp(name, email, password);
+
+    if (res.token) {
+      alert('Usuario cadastrado com sucesso!');
+      navigation.reset({routes: [{name: 'SignIn'}]});
+    } else {
+      alert(res.error);
+      navigation.reset({routes: [{name: 'SighUp'}]});
+    }
+  };
   const handleLogin = () => {
     navigation.reset({routes: [{name: 'SignIn'}]});
   };
@@ -47,7 +58,7 @@ export default () => {
           value={password}
           onChangeText={(t) => setPassword(t)}
           password={true}></SighInput>
-        <CustomButton onPress={handleLogin}>
+        <CustomButton onPress={handleCadastar}>
           <CustomButtonText>CADASTRAR</CustomButtonText>
         </CustomButton>
       </InputArea>
