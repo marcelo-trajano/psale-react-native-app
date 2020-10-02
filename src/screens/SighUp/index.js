@@ -5,7 +5,7 @@ import {Text} from 'react-native';
 export default () => {
   return (
     <Container>
-      <Text>Olaa</Text>
+      <Text>SighUp</Text>
     </Container>
   );
 };
