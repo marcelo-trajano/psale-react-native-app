@@ -28,4 +28,9 @@ export default {
     const json = await req.json();
     return json;
   },
+  getLocalProfessionals: async (token) => {
+    const req = await fetch(`${BASE_API}/barbers?token=${token}`);
+    const json = await req.json();
+    return json;
+  },
 };

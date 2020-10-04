@@ -1,14 +1,11 @@
-import React, {useEffect} from 'react';
-import {Container, Text} from './styles';
-import {useNavigation} from '@react-navigation/native';
+import React from 'react';
+import {Text} from 'react-native';
+import {Container} from './styles';
 
 export default () => {
-  const navigation = useNavigation();
-
-  useEffect(() => {}, []);
   return (
     <Container>
-      <Text>Home</Text>
+      <Text>Appointments</Text>
     </Container>
   );
 };
