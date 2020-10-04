@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import {useNavigation} from '@react-navigation/native';
 import {
   Container,
@@ -10,6 +10,7 @@ import {
   LocationInput,
   LocationFinder,
   LoadingIcon,
+  ListProfessinals,
 } from './styles';
 import ItemProfessionalsList from '../../components/ItemProfessionalsList';
 import Api from '../../Api';
@@ -56,6 +57,11 @@ export default () => {
       setloading(false);
     }
   };
+
+  useEffect(() => {
+    getLocation();
+  }, []);
+
   return (
     <Container>
       <Scroller>
@@ -83,9 +89,11 @@ export default () => {
         {loading ? (
           <LoadingIcon size="large" color="#ffffff" />
         ) : (
-          listLocalProfessionals.map((item, key) => [
-            <ItemProfessionalsList key={key} data={item} />,
-          ])
+          <ListProfessinals>
+            {listLocalProfessionals.map((item, key) => (
+              <ItemProfessionalsList key={key} data={item} />
+            ))}
+          </ListProfessinals>
         )}
       </Scroller>
     </Container>

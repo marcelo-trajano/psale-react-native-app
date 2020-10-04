@@ -47,3 +47,8 @@ export const LocationFinder = styled.TouchableOpacity`
 export const LoadingIcon = styled.ActivityIndicator`
   margin-top: 50px;
 `;
+
+export const ListProfessinals = styled.View`
+  margin-top: 20px;
+  margin-bottom: 50px;
+`;
