@@ -15,7 +15,7 @@ import {
 import ItemProfessionalsList from '../../components/ItemProfessionalsList';
 import Api from '../../Api';
 import AsyncStorage from '@react-native-community/async-storage';
-import {Platform} from 'react-native';
+import {Platform, RefreshControl} from 'react-native';
 import {request, PERMISSIONS} from 'react-native-permissions';
 import Geolocation from '@react-native-community/geolocation';
 import SearchIcon from '../../assets/search.svg';
@@ -27,6 +27,7 @@ export default () => {
   const [coords, setcoords] = useState(null);
   const [loading, setloading] = useState(false);
   const [listLocalProfessionals, setListLocalProfessionals] = useState([]);
+  const [refreshing, setrefreshing] = useState(false);
 
   const searchClick = () => {
     navigation.navigate('Search');
@@ -52,19 +53,36 @@ export default () => {
 
       let listProfessionals = await Api.getLocalProfessionals(token);
 
+      setlocation(listProfessionals.loc);
       setListLocalProfessionals(listProfessionals.data);
-
       setloading(false);
     }
   };
 
+  const getListProfessionals = async () => {
+    setloading(true);
+    let token = await AsyncStorage.getItem('token');
+    let listProfessionals = await Api.getLocalProfessionals(token);
+    setlocation(listProfessionals.loc);
+    setListLocalProfessionals(listProfessionals.data);
+    setloading(false);
+  };
+
+  const onRefresh = () => {
+    //setrefreshing(false);
+    getListProfessionals();
+  };
+
   useEffect(() => {
-    getLocation();
+    getListProfessionals();
   }, []);
 
   return (
     <Container>
-      <Scroller>
+      <Scroller
+        refreshControl={
+          <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
+        }>
         <HeaderArea>
           <HeaderTitle numberOfLines={2}>
             Encontre o seu barbeiro favorito
