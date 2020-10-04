@@ -33,4 +33,9 @@ export default {
     const json = await req.json();
     return json;
   },
+  getProfessional: async (id, token) => {
+    const req = await fetch(`${BASE_API}/barber/${id}?token=${token}`);
+    const json = await req.json();
+    return json;
+  },
 };

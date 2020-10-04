@@ -41,19 +41,21 @@ const ProfileButtonText = styled.Text`
 export default ({data}) => {
   const navigation = useNavigation();
 
+  const handleClick = () => {
+    navigation.navigate('ProfessionalInfo', {
+      id: data.id,
+      avatar: data.avatar,
+      stars: data.starts,
+    });
+  };
+
   return (
-    <Area
-      onPress={() => {
-        navigation.navigate('Profile');
-      }}>
+    <Area onPress={handleClick}>
       <Avatar source={{uri: data.avatar}} />
       <UserInfo>
         <UserName>{data.name}</UserName>
         <Stars stars={data.stars} showNumber={true} />
-        <ProfileButton
-          onPress={() => {
-            navigation.navigate('Profile');
-          }}>
+        <ProfileButton>
           <ProfileButtonText>Ver Perfil</ProfileButtonText>
         </ProfileButton>
       </UserInfo>

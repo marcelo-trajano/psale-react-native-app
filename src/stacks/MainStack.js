@@ -5,6 +5,7 @@ import Preload from '../screens/Preload';
 import SighUp from '../screens/SighUp';
 import SignIn from '../screens/SignIn';
 import MainTab from '../stacks/MainTab';
+import ProfessionalInfo from '../screens/ProfessionalInfo';
 
 const Stack = createStackNavigator();
 
@@ -17,6 +18,7 @@ export default () => {
       <Stack.Screen name="SighUp" component={SighUp} />
       <Stack.Screen name="SignIn" component={SignIn} />
       <Stack.Screen name="MainTab" component={MainTab} />
+      <Stack.Screen name="ProfessionalInfo" component={ProfessionalInfo} />
     </Stack.Navigator>
   );
 };

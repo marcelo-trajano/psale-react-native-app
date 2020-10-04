@@ -85,7 +85,7 @@ export default () => {
         }>
         <HeaderArea>
           <HeaderTitle numberOfLines={2}>
-            Encontre o seu barbeiro favorito
+            Encontre o seu profissional favorito
           </HeaderTitle>
           <SearchButtom onPress={searchClick}>
             <SearchIcon width="26" height="26" fill="#fff" />
