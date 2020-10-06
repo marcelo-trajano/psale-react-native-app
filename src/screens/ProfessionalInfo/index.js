@@ -30,7 +30,7 @@ import {
   TestimonialBody,
 } from './styles';
 import Stars from '../../components/Stars';
-import Stars from '../../components/ServiceModal';
+import ServiceModal from '../../components/ServiceModal';
 import FavoriteIcon from '../../assets/favorite.svg';
 import FavoriteIconFull from '../../assets/favorite_full.svg';
 import BackIcon from '../../assets/back.svg';
@@ -53,7 +53,7 @@ export default () => {
   });
   const [loading, setLoading] = useState(false);
   const [favorited, setFavorited] = useState(false);
-  const [selectedService, setSelectedService] = useState(null);
+  const [selectedService, setSelectedService] = useState({});
   const [showModal, setShowModal] = useState(false);
 
   useEffect(() => {
@@ -83,8 +83,10 @@ export default () => {
     setFavorited(!favorited);
   };
 
-  const bookService = (serviceId) => {
-    console.log(serviceId);
+  const bookService = (service) => {
+    console.log(service);
+    setSelectedService(service);
+    setShowModal(true);
   };
 
   return (
@@ -135,7 +137,7 @@ export default () => {
                     </ServInfo>
                     <BtnAgendar
                       onPress={() => {
-                        bookService(key);
+                        bookService(item);
                       }}>
                       <BtnAgendarText>Agendar</BtnAgendarText>
                     </BtnAgendar>
