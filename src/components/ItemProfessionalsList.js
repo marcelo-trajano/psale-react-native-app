@@ -44,8 +44,9 @@ export default ({data}) => {
   const handleClick = () => {
     navigation.navigate('ProfessionalInfo', {
       id: data.id,
+      name: data.name,
       avatar: data.avatar,
-      stars: data.starts,
+      stars: data.stars,
     });
   };
 
